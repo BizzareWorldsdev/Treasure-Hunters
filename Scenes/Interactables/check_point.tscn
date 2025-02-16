@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://c63kpodfqcaqb"]
+
+[ext_resource type="Texture2D" uid="uid://cwr4ufw802hps" path="res://Treasure Hunters/Palm Tree Island/Sprites/Objects/Flag/Flag 02.png" id="1_35tjj"]
+[ext_resource type="Script" path="res://Scripts/Interactable/check_point.gd" id="1_w8cwu"]
+[ext_resource type="Texture2D" uid="uid://dqaxlyqbxhnhg" path="res://Treasure Hunters/Palm Tree Island/Sprites/Objects/Flag/Flag 03.png" id="2_35u2b"]
+[ext_resource type="Texture2D" uid="uid://bbtrx5ti473jm" path="res://Treasure Hunters/Palm Tree Island/Sprites/Objects/Flag/Flag 04.png" id="3_8sp1a"]
+[ext_resource type="Texture2D" uid="uid://bv7vs3bopfifo" path="res://Treasure Hunters/Palm Tree Island/Sprites/Objects/Flag/Flag 05.png" id="4_yn4ki"]
+[ext_resource type="Texture2D" uid="uid://b0atf4qis6apw" path="res://Treasure Hunters/Palm Tree Island/Sprites/Objects/Flag/Flag 07.png" id="5_eri56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o6db"]
+size = Vector2(51, 98)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uas57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_35tjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_35u2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8sp1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yn4ki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eri56")
+}],
+"loop": true,
+"name": &"activate",
+"speed": 6.0
+}]
+
+[node name="CheckPoint" type="Node2D"]
+script = ExtResource("1_w8cwu")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-20, -41)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15.5, 39)
+shape = SubResource("RectangleShape2D_5o6db")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uas57")
+animation = &"activate"
+frame_progress = 0.727162
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

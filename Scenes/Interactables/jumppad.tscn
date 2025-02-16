@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlgswgk2bvyrl"]
+
+[ext_resource type="Texture2D" uid="uid://cc7nsd8kqjgg6" path="res://Treasure Hunters/pad.png" id="1_kcy5x"]
+[ext_resource type="Script" path="res://Scripts/Interactable/jumppad.gd" id="1_kyfam"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcge2"]
+size = Vector2(24, 21)
+
+[node name="jumppad" type="Node2D"]
+script = ExtResource("1_kyfam")
+force = -700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 22)
+scale = Vector2(0.8, 0.7)
+texture = ExtResource("1_kcy5x")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_mcge2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
